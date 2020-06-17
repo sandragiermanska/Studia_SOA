@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Books</title>
+</h:head>
+<h:body>
+    <h1><h:outputText value="Table with books"> </h:outputText></h1>
+
+    <h:form>
+        <h2>Categories</h2>
+        <h:commandLink action="#{table.changeShowTitle}"> Title </h:commandLink> <br/>
+        <h:commandLink action="#{table.changeShowAuthor}"> Author </h:commandLink> <br/>
+        <h:commandLink action="#{table.changeShowType}"> Type </h:commandLink> <br/>
+        <h:commandLink action="#{table.changeShowPrice}"> Price </h:commandLink> <br/>
+        <h:commandLink action="#{table.changeShowCurrency}"> Currency </h:commandLink> <br/>
+        <h:commandLink action="#{table.changeShowPages}"> Pages </h:commandLink> <br/>
+    </h:form>
+
+    <h:form>
+        <h:commandButton value="Sortuj" action="#{table.sort}"/>
+        <h:dataTable id="bookTable" value="#{table.getBookList()}"
+                     var="book">
+            <h:column>
+                <f:facet name="header">
+                </f:facet>
+                <h:selectBooleanCheckbox value="#{book.checked}"> <f:ajax/> </h:selectBooleanCheckbox>
+            </h:column>
+            <h:column rendered="#{table.showTitle}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByTitle}">
+                        Title
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[0]}">
+                                #{table.categoriesSorting[0]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[0]}">
+                                #{table.categoriesSorting[0]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                #{book.title}
+            </h:column>
+            <h:column rendered="#{table.showAuthor}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByAuthor}">
+                        Author
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[1]}">
+                                #{table.categoriesSorting[1]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[1]}">
+                                #{table.categoriesSorting[1]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{book.author}"/>
+            </h:column>
+            <h:column rendered="#{table.showType}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByType}">
+                        Type
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[2]}">
+                                #{table.categoriesSorting[2]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[2]}">
+                                #{table.categoriesSorting[2]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{book.type}"/>
+            </h:column>
+            <h:column rendered="#{table.showPrice}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByPrice}">
+                        Price
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[3]}">
+                                #{table.categoriesSorting[3]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[3]}">
+                                #{table.categoriesSorting[3]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{book.price}"/>
+            </h:column>
+
+            <h:column rendered="#{table.showCurrency}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByCurrency}">
+                        Currency
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[4]}">
+                                #{table.categoriesSorting[4]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[4]}">
+                                #{table.categoriesSorting[4]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{book.currency}"/>
+            </h:column>
+            <h:column rendered="#{table.showPages}">
+                <f:facet name="header">
+                    <h:commandLink action="#{table.sortByPages}">
+                        Pages
+                        <h:outputLabel rendered="#{table.changeSorting}">
+                            <h:outputLabel style="color:red" rendered="#{table.categoriesSortingIsAscending[5]}">
+                                #{table.categoriesSorting[5]}
+                            </h:outputLabel>
+                            <h:outputLabel style="color:blue" rendered="#{!table.categoriesSortingIsAscending[5]}">
+                                #{table.categoriesSorting[5]}
+                            </h:outputLabel>
+                        </h:outputLabel>
+                    </h:commandLink>
+                </f:facet>
+                <h:outputText value="#{book.numberOfPages}"/>
+            </h:column>
+
+        </h:dataTable>
+
+        <h:commandButton value="Przelicz ceny" action="#{table.changeCurrency}"/>
+        <h:commandButton value="Potwierdz" action="#{table.summary}"/>
+
+        <h:outputLabel rendered="#{table.showSummary}">
+            <h1>Podsumowanie zamowienia</h1> <br/>
+            <h3>Laczna liczba ksiazek:
+            <h:outputText value="#{table.numberOfCheckedBooks}"/> </h3> <br/>
+            <h3>Laczna cena:
+            <h:outputText value="#{table.sum}"/>
+            zl</h3> <br/>
+            <h:commandButton value="Anuluj" action="#{table.summaryCancel}"/>
+        </h:outputLabel>
+
+    </h:form>
+</h:body>
+</html>

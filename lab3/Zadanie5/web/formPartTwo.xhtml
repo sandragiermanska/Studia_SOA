@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<head>
+    <title>Ankieta</title>
+</head>
+<body>
+<h1>Druga czesc ankiety</h1>
+<h:form>
+    <h:commandLink action="#{formBean.incrementCounter}">
+        <h:graphicImage value="#{formBean.advertisement}" width="200" height="200" />
+    </h:commandLink>
+
+    <h3>Ile jestes w stanie przeznaczyc miesiecznie na zakup ubrania?</h3>
+    <br/>
+    <h:selectOneListbox value="#{formBean.money}">
+        <f:selectItem itemValue="do 100 zl" itemLabel="do 100 zl"/>
+        <f:selectItem itemValue="100 - 500 zl" itemLabel="100 - 500 zl"/>
+        <f:selectItem itemValue="500 - 1000 zl" itemLabel="500 - 1000 zl"/>
+        <f:selectItem itemValue="powyzej 1000 zl" itemLabel="powyzej 1000 zl"/>
+    </h:selectOneListbox>
+
+    <h3>Jak czesto dokonujesz zakupu ubrania?</h3>
+    <br/>
+    <h:selectOneListbox value="#{formBean.periodicity}">
+        <f:selectItem itemValue="codziennie" itemLabel="codziennie"/>
+        <f:selectItem itemValue="raz w tygodniu" itemLabel="raz w tygodniu"/>
+        <f:selectItem itemValue="raz w miesiacu" itemLabel="raz w miesiacu"/>
+        <f:selectItem itemValue="kilka razy w roku" itemLabel="kilka razy w roku"/>
+    </h:selectOneListbox>
+
+    <h3>W jakich kolorach preferujesz ubrania?</h3>
+    (wybierz wiecej uzywajac ctrl)
+    <br/>
+    <h:selectManyListbox value="#{formBean.color}">
+        <f:selectItem itemValue="kolorowo-jaskrawych" itemLabel="kolorowo-jaskrawych"/>
+        <f:selectItem itemValue="stonowanych w szarosciach" itemLabel="stonowanych w szarosciach"/>
+        <f:selectItem itemValue="w czerni i bieli" itemLabel="w czerni i bieli"/>
+        <f:selectItem itemValue="w samej czerni" itemLabel="w samej czerni"/>
+    </h:selectManyListbox>
+
+    <h3>Jakiego rodzaju ubrania najchetniej kupujesz?</h3>
+    (wybierz wiecej uzywajac ctrl)
+    <br/>
+
+    <h:outputLabel rendered="#{!formBean.male}">
+        <h:selectManyListbox value="#{formBean.clothes}">
+            <f:selectItem itemValue="Garsonki" itemLabel="Garsonki"/>
+            <f:selectItem itemValue="Bluzki" itemLabel="Bluzki"/>
+            <f:selectItem itemValue="Spodniczki" itemLabel="Spodniczki"/>
+            <f:selectItem itemValue="Spodnie" itemLabel="Spodnie"/>
+        </h:selectManyListbox>
+    </h:outputLabel>
+
+    <h:outputLabel rendered="#{formBean.male}">
+        <h:selectManyListbox value="#{formBean.clothes}">
+            <f:selectItem itemValue="Spodnie" itemLabel="Spodnie"/>
+            <f:selectItem itemValue="Spodenki" itemLabel="Spodenki"/>
+            <f:selectItem itemValue="Garnitury" itemLabel="Garnitury"/>
+            <f:selectItem itemValue="Koszule" itemLabel="Koszule"/>
+            <f:selectItem itemValue="Krawaty" itemLabel="Krawaty"/>
+        </h:selectManyListbox>
+    </h:outputLabel>
+
+    <h:commandButton value="Podsumuj" action="#{formBean.endSecondPart}"/>
+
+</h:form>
+
+</body>
+</html>

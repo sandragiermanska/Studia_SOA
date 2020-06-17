@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xml:lang="en" lang="en">
+<head>
+    <title>Ankieta</title>
+</head>
+<body>
+<h1>Podsumowanie</h1>
+<h:form>
+
+    <h:commandLink action="#{formBean.incrementCounter}">
+        <h:graphicImage value="#{formBean.advertisement}" width="200" height="200" />
+    </h:commandLink>
+
+
+    <h2>Twoje dane:</h2>
+    Imie <h:outputText value="#{formBean.name}"/> <br/>
+    E-mail <h:outputText value="#{formBean.email}"/> <br/>
+    Wiek <h:outputText value="#{formBean.age}"/> <br/>
+    Plec <h:outputText rendered="#{formBean.male}" value="mezczyzna"/>
+        <h:outputText rendered="#{!formBean.male}" value="kobieta"/> <br/>
+    <h:outputLabel rendered="#{!formBean.education.equals('')}">
+    Wyksztalcenie <h:outputText value="#{formBean.education}"/> <br/>
+    </h:outputLabel>
+    Wzrost <h:outputText value="#{formBean.height}"/> <br/>
+
+
+
+    <h:outputLabel rendered="#{!formBean.male}">
+        <h:outputLabel rendered="#{formBean.breast != 0}">
+        Obwod biustu <h:outputText value="#{formBean.breast}"/> <br/>
+        </h:outputLabel>
+        <h:outputLabel rendered="#{!formBean.cup.equals('')}">
+        Wielkosc miseczki <h:outputText value="#{formBean.cup}"/> <br/>
+        </h:outputLabel>
+        <h:outputLabel rendered="#{formBean.waistF != 0}">
+        Talia <h:outputText value="#{formBean.waistF}"/> <br/>
+        </h:outputLabel>
+        <h:outputLabel rendered="#{formBean.hip != 0}">
+        Biodra <h:outputText value="#{formBean.hip}"/> <br/>
+        </h:outputLabel>
+    </h:outputLabel>
+
+    <h:outputLabel rendered="#{formBean.male}">
+        <h:outputLabel rendered="#{formBean.cheast != 0}">
+        Klatka <h:outputText value="#{formBean.cheast}"/> <br/>
+        </h:outputLabel>
+        <h:outputLabel rendered="#{formBean.waistM != 0}">
+        Pas <h:outputText value="#{formBean.waistM}"/> <br/>
+        </h:outputLabel>
+    </h:outputLabel>
+
+
+    <br/>
+    <h:outputLabel rendered="#{formBean.money != null}">
+    <h3>Ile jestes w stanie przeznaczyc miesiecznie na zakup ubrania?
+        <h:outputText value="#{formBean.money}"/>
+    </h3>
+    </h:outputLabel>
+    <h:outputLabel rendered="#{formBean.periodicity != null}">
+    <h3>Jak czesto dokonujesz zakupu ubrania?
+    <h:outputText value="#{formBean.periodicity}"/>
+    </h3>
+    </h:outputLabel>
+    <h:outputLabel rendered="#{formBean.checkLengthOfColors()}">
+    <h3>W jakich kolorach preferujesz ubrania?
+        <h:dataTable value="#{formBean.color}" var="col">
+            <h:column>
+                #{col}
+            </h:column>
+        </h:dataTable>
+    </h3>
+    </h:outputLabel>
+    <h:outputLabel rendered="#{formBean.checkLengthOfClothes()}">
+    <h3>Jakiego rodzaju ubrania najchetniej kupujesz?
+        <h:dataTable value="#{formBean.clothes}" var="clo">
+            <h:column>
+                #{clo}
+            </h:column>
+        </h:dataTable>
+    </h3>
+    </h:outputLabel>
+
+    <h:commandButton value="Wypelnij ankiete jeszcze raz" action="#{formBean.startAgain}"/>
+
+</h:form>
+
+</body>
+</html>
