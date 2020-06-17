@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Books</title>
+</h:head>
+<h:body>
+
+    <h:form>
+        <h:commandButton value="STRONA ADMINISTRATORA" action="admin"/>
+    </h:form>
+
+    <!--TABELA-->
+
+    <h1><h:outputText value="Table with books"> </h:outputText></h1>
+
+    <h:form>
+        <h:dataTable id="bookTable" value="#{borrowBean.getBookList()}"
+                     var="book">
+            <h:column>
+                <f:facet name="header">
+                    ID |
+                </f:facet>
+                #{book.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Title |
+                </f:facet>
+                #{book.bookI.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Author First Name |
+                </f:facet>
+                #{book.bookI.author.firstName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Author Last Name |
+                </f:facet>
+                #{book.bookI.author.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    ISBN |
+                </f:facet>
+                #{book.bookI.isbn}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Category |
+                </f:facet>
+                #{book.bookI.category.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Is borrowed?
+                </f:facet>
+                #{book.isBorrowed()}
+            </h:column>
+
+        </h:dataTable>
+
+    </h:form>
+
+    <!--WYSZUKIWANIE-->
+
+    <h:form id="search">
+        <br/>
+        WYSZUKAJ:
+        <h:commandLink value="AUTORA" action="author"/> <br/>
+        <h:commandLink value="CZYTELNIKA" action="reader"/> <br/>
+        <h:commandLink value="KSIAZKE" action="book"/> <br/>
+        <h:commandLink value="KATEGORIE" action="category"/> <br/>
+    </h:form>
+
+    <!--WYPOZYCZANIE-->
+
+    <h:form>
+        <br/>
+        ID UZYTKOWNIKA <h:inputText value="#{borrowBean.borrowBookId}"></h:inputText> <br/>
+        ID KSIAZKI <h:inputText value="#{borrowBean.borrowBookId}"></h:inputText> <br/>
+        <h:commandButton value="WYPOZYCZ" action="#{borrowBean.borrowBook()}"/>
+        <h:commandButton value="ZWROC" action="#{borrowBean.returnBook()}"/>
+        <h:outputLabel rendered="#{!borrowBean.borrowAccepted}">
+            Ta pozycja jest juz wypozyczona.
+        </h:outputLabel>
+    </h:form>
+
+</h:body>
+</html>
