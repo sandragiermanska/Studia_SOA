@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Books</title>
+</h:head>
+<h:body>
+    <h1><h:outputText value="Table with books"> </h:outputText></h1>
+
+    <h:form>
+        <h:dataTable id="bookTable" value="#{table.getBookList()}"
+                     var="book">
+            <h:column>
+                <f:facet name="header">
+                    ID
+                </f:facet>
+                #{book.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Title
+                </f:facet>
+                #{book.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Author First Name
+                </f:facet>
+                #{book.authorFirstName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Author Last Name
+                </f:facet>
+                #{book.authorLastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    ISBN
+                </f:facet>
+                #{book.ISBNnumber}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Year
+                </f:facet>
+                #{book.year}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Price
+                </f:facet>
+                #{book.price}
+            </h:column>
+
+        </h:dataTable>
+
+    </h:form>
+    <h:form>
+        <br/>
+
+        ID <h:inputText value="#{table.id}"></h:inputText> <br/>
+        <br/>
+        TITLE <h:inputText value="#{table.title}"></h:inputText> <br/>
+        FIRST NAME <h:inputText value="#{table.firstName}"></h:inputText> <br/>
+        LAST NAME <h:inputText value="#{table.lastName}"></h:inputText> <br/>
+        ISBN <h:inputText value="#{table.isbn}"></h:inputText> <br/>
+        YEAR<h:inputText value="#{table.year}"></h:inputText> <br/>
+        PRICE <h:inputText value="#{table.price}"></h:inputText> <br/>
+        <h:commandButton value="Dodaj" action="#{table.add}"/> (aby dodac podaj dane - bez id) <br/>
+        <h:commandButton value="Usun" action="#{table.delete}"/> (aby usunac podaj id) <br/>
+        <h:commandButton value="Modyfikuj" action="#{table.update}"/> (aby modyfikowac podaj id i modyfikowane dane) <br/>
+
+    </h:form>
+</h:body>
+</html>
