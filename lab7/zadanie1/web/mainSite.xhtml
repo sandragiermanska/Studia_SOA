@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+    <title>Forum</title>
+</h:head>
+<h:body>
+    <h2>Strona glowna forum</h2>
+    <h:form>
+        <h:commandButton value="Utworz nowa liste tematyczna" action="#{forumBean.createThematicListSite()}"/>
+    </h:form>
+
+    <!--POWIADOMIENIA-->
+
+    <h4>Powiadomienia</h4>
+    <h:form>
+        <h:commandButton value="Odswiez">
+            <f:ajax render="confirmations"/>
+        </h:commandButton>
+        <h:dataTable id="confirmations" value="#{forumBean.getNotificationsList()}"
+                     var="noti">
+            <h:column>
+                #{noti.text}
+            </h:column>
+            <h:column>
+                <h:commandButton value="Usun" action="#{forumBean.deleteNotification(noti)}">
+                    <f:ajax render="confirmations"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+    <!--TABELA-->
+
+    <h4>Listy tematyczne</h4>
+    <h:form>
+        <h:dataTable id="thematicLists" value="#{forumBean.getThematicLists()}"
+                     var="list">
+            <h:column>
+                <f:facet name="header">
+                    ID |
+                </f:facet>
+                #{list.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    NAME |
+                </f:facet>
+                #{list.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    OWNER
+                </f:facet>
+                #{list.owner.getLogin()}
+            </h:column>
+            <h:column>
+                <!--subscribe-->
+                <h:commandButton value="Subskrybuj" action="#{forumBean.subscribe(list)}" rendered="#{forumBean.isSubscribed(list)==false}">
+                    <f:ajax event="change"/>
+                </h:commandButton>
+                <h:commandButton value="Odsubskrybuj" action="#{forumBean.unsubscribe(list)}" rendered="#{forumBean.isSubscribed(list) eq true}">
+                    <f:ajax event="change"/>
+                </h:commandButton>
+            </h:column>
+            <h:column>
+                <!--open-->
+                <h:commandButton value="Otworz" action="#{forumBean.open(list)}"/>
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+
+</h:body>
+
+</html>

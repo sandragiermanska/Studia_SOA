@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <title>Admin</title>
+</head>
+<body>
+
+<h:form>
+    <h:commandButton value="STRONA LOGOWANIA" action="signIn"/>
+</h:form>
+
+<!--POWIADOMIENIA-->
+
+<h:form>
+    <h1>Potwierdzenia operacji</h1>
+    <h:commandButton value="Odswiez">
+        <f:ajax render="confirmations"/>
+    </h:commandButton>
+    <h:dataTable id="confirmations" value="#{adminBean.getConfirmationsList()}"
+                 var="con">
+        <h:column>
+            #{con.text}
+        </h:column>
+        <h:column>
+            <h:commandButton value="Usun" action="#{adminBean.deleteConfirmation(con)}">
+                <f:ajax render="confirmations"/>
+            </h:commandButton>
+        </h:column>
+    </h:dataTable>
+</h:form>
+
+<!--CZYTELNICY-->
+
+<h:form>
+    <h1>Czytelnicy</h1>
+    <h:dataTable id="users" value="#{adminBean.getReaderList()}"
+                 var="entity">
+        <h:column>
+            <f:facet name="header">
+                ID |
+            </f:facet>
+            #{entity.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                IMIE |
+            </f:facet>
+            #{entity.firstName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                NAZWISKO
+            </f:facet>
+            #{entity.lastName}
+        </h:column>
+    </h:dataTable>
+</h:form>
+
+<h:form>
+    <br/>
+    ID <h:inputText value="#{adminBean.readerId}"/> <br/>
+    <h:commandButton value="Usun" action="#{adminBean.deleteUser}"/> (aby usunac podaj id) <br/>
+</h:form>
+
+
+<!--AUTORZY-->
+
+
+<h:form>
+    <br/>
+    <h1>Autorzy</h1>
+    <h:dataTable id="authors" value="#{adminBean.getAuthorList()}"
+                 var="entity">
+        <h:column>
+            <f:facet name="header">
+                ID |
+            </f:facet>
+            #{entity.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                IMIE |
+            </f:facet>
+            #{entity.firstName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                NAZWISKO
+            </f:facet>
+            #{entity.lastName}
+        </h:column>
+    </h:dataTable>
+</h:form>
+
+<h:form>
+    <br/>
+    ID <h:inputText value="#{adminBean.authorId}"/> <br/>
+    <h:commandButton value="Usun" action="#{adminBean.deleteAuthor}"/> (aby usunac podaj id) <br/>
+    <br/>
+    IMIE <h:inputText value="#{adminBean.authorFirstName}"/> <br/>
+    NAZWISKO <h:inputText value="#{adminBean.authorLastName}"/> <br/>
+    <h:commandButton value="Dodaj" action="#{adminBean.addAuthor}"/> (aby dodac podaj imie i nazwisko) <br/>
+</h:form>
+
+
+<!--KSIAZKI-->
+
+
+<h:form>
+    <br/>
+    <h1>Ksiazki</h1>
+    <h:dataTable id="book" value="#{adminBean.getBookList()}"
+                 var="entity">
+        <h:column>
+            <f:facet name="header">
+                ID |
+            </f:facet>
+            #{entity.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                TYTUL |
+            </f:facet>
+            #{entity.title}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                AUTOR |
+            </f:facet>
+            #{entity.author.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                ISBN |
+            </f:facet>
+            #{entity.isbn}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                KATEGORIA
+            </f:facet>
+            #{entity.category.id}
+        </h:column>
+    </h:dataTable>
+</h:form>
+
+<h:form>
+    <br/>
+    ID <h:inputText value="#{adminBean.bookId}"/> <br/>
+    <h:commandButton value="Usun" action="#{adminBean.deleteBook}"/> (aby usunac podaj id) <br/>
+    <br/>
+    TYTUL <h:inputText value="#{adminBean.bookTitle}"/> <br/>
+    ID AUTORA <h:inputText value="#{adminBean.bookAuthorId}"/> <br/>
+    ISBN <h:inputText value="#{adminBean.bookIsbn}"/> <br/>
+    ID KATEGORII <h:inputText value="#{adminBean.bookCategoryId}"/> <br/>
+    <h:commandButton value="Dodaj" action="#{adminBean.addBook}"/> (aby dodac podaj dane - bez id) <br/>
+</h:form>
+
+
+
+<!--KATEGORIE-->
+
+
+<h:form>
+    <br/>
+    <h1>Kategorie</h1>
+    <h:dataTable id="bookTable" value="#{adminBean.getCategoryList()}"
+                 var="entity">
+        <h:column>
+            <f:facet name="header">
+                ID |
+            </f:facet>
+            #{entity.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                NAZWA |
+            </f:facet>
+            #{entity.name}
+        </h:column>
+    </h:dataTable>
+</h:form>
+
+<h:form>
+    <br/>
+    ID <h:inputText value="#{adminBean.categoryId}"/> <br/>
+    <h:commandButton value="Usun" action="#{adminBean.deleteCategory}"/> (aby usunac podaj id) <br/>
+    <br/>
+    NAZWA <h:inputText value="#{adminBean.categoryName}"/> <br/>
+    <h:commandButton value="Dodaj" action="#{adminBean.addCategory}"/> (aby dodac podaj nazwe) <br/>
+</h:form>
+
+
+
+</body>
+</html>

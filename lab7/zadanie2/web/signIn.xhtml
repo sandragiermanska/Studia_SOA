@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Logowanie</title>
+</h:head>
+<h:body>
+
+    <h:form>
+        <h:outputLabel value="IMIE: "/>
+        <h:inputText id="fName" value="#{mainBean.userFirstName}" required="true" requiredMessage=" Podaj imie"/>
+        <h:message for="fName" style="color:red"/>
+        <br/>
+        <h:outputLabel value="NAZWISKO: "/>
+        <h:inputText id="lName" value="#{mainBean.userLastName}" required="true" requiredMessage=" Podaj nazwisko"/>
+        <h:message for="lName" style="color:red"/>
+        <br/>
+        <h:selectBooleanCheckbox value="#{mainBean.userWantNewBookNotifications}">
+            chce otrzymywac informacje o nowych pozycjach (deklaracja tylko przy pierwszym logowaniu)
+        </h:selectBooleanCheckbox>
+        <br/>
+        <h:commandButton value="ZALOGUJ" action="#{mainBean.signIn()}"/>
+    </h:form>
+
+    <br/>
+
+    <h:form>
+        <h:commandButton value="STRONA ADMINISTRATORA" action="#{mainBean.signInAsAdmin()}"/>
+    </h:form>
+
+</h:body>
+</html>
