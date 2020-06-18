@@ -1,0 +1,46 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="zadanie1:war exploded">
+    <output-path>$PROJECT_DIR$/target/REST</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="zadanie1" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax:javaee-api:8.0.1" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.clojure:java.jdbc:0.7.9" />
+          <element id="library" level="project" name="Maven: org.clojure:clojure:1.7.0" />
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.2.12" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-jaxrs2:2.1.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.1" />
+          <element id="library" level="project" name="Maven: io.github.classgraph:classgraph:4.8.65" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.22.0-GA" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-models:2.1.2" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-annotations:2.1.2" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-integration:2.1.2" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-core:2.1.2" />
+          <element id="library" level="project" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.7" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.1" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.24" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.1" />
+          <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.10.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.10.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.10.1" />
+          <element id="library" level="project" name="Maven: jakarta.activation:jakarta.activation-api:1.2.1" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-jaxrs2-servlet-initializer-v2:2.1.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/REST/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="zadanie1/web/Web" />
+    </root>
+  </artifact>
+</component>
